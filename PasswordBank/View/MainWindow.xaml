@@ -6,11 +6,43 @@
         xmlns:local="clr-namespace:PasswordBank"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <StackPanel>
-            <TextBox HorizontalAlignment="Left" Text="{Binding Path=Password, Mode=OneWay}" MinWidth="100">
-            </TextBox>
+    <Grid Background="#E00F0F0F">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--Column 0-->
+        <StackPanel Grid.Column="0">
+            <Label Content="Password Bank" FontSize="20" HorizontalAlignment="Center" FontFamily="Comic Sans MS" Foreground="White"/>
+            <Label Content="Login:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
         </StackPanel>
 
+
+        <!--Column 1-->
+        <StackPanel Grid.Column="1">
+            <Label Content="Add:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
+            <Label Content="Edit:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
+            <Label Content="Remove:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
+        </StackPanel>
+
+        <!--Column 2-->
+        <StackPanel Grid.Column="2">
+            <Label Content="Search:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
+            <!--<DataGrid IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Center" ItemsSource="{Binding Path=PasswordList, Mode=OneWay}" MinWidth="200" MinHeight="300" AutoGenerateColumns="false">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Service:" Binding="{Binding Service}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Password:" Binding="{Binding Password}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>-->
+            <ListView Margin="10" ItemsSource="{Binding PasswordList}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Service" DisplayMemberBinding="{Binding Service}" Width="100"/>
+                        <GridViewColumn Header="Password" DisplayMemberBinding="{Binding Password}" Width="100"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Window>
