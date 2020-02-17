@@ -5,23 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordBank"
         mc:Ignorable="d"
-        Title="Password Bank" Height="450" Width="800">
+        Icon="lock.ico"
+        Title="Password Bank" Height="450" Width="500">
     <Grid Background="#E00F0F0F">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!--Column 0-->
         <StackPanel Grid.Column="0">
             <Label Content="Password Bank" FontSize="20" HorizontalAlignment="Center" FontFamily="Comic Sans MS" Foreground="White"/>
-            <Label Content="Login:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
-        </StackPanel>
+            <Label Content="Enter password:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
+            <TextBox Margin="10,0,10,0" Text="{Binding ServiceTextBox}"/>
+            <Button Grid.Column="1" Content="Login" Margin="10,10,10,0" HorizontalAlignment="Right" Width="75"/>
 
-
-        <!--Column 1-->
-        <StackPanel Grid.Column="1">
-            <Grid>
+            <Grid Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -48,15 +46,10 @@
             </Grid>
         </StackPanel>
 
-        <!--Column 2-->
-        <StackPanel Grid.Column="2">
+
+        <!--Column 1-->
+        <StackPanel Grid.Column="1">
             <Label Content="Search:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
-            <!--<DataGrid IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Center" ItemsSource="{Binding Path=PasswordList, Mode=OneWay}" MinWidth="200" MinHeight="300" AutoGenerateColumns="false">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Service:" Binding="{Binding Service}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Password:" Binding="{Binding Password}"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>-->
             <ListView Margin="10" ItemsSource="{Binding PasswordList}">
                 <ListView.View>
                     <GridView>
