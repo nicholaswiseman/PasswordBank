@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordBank"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Password Bank" Height="450" Width="800">
     <Grid Background="#E00F0F0F">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -21,7 +21,6 @@
 
         <!--Column 1-->
         <StackPanel Grid.Column="1">
-            <Label Content="Add:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -45,12 +44,8 @@
                 </Grid.ColumnDefinitions>
                 <Button Command="{Binding AddButtonCommand}" Grid.Column="0" Content="Add" Margin="10,10,10,0" HorizontalAlignment="Right" Width="75"/>
                 <Button Grid.Column="1" Content="Edit" Margin="10,10,10,0" HorizontalAlignment="Right" Width="75"/>
-                <Button Grid.Column="2" Content="Remove" Margin="10,10,10,0" HorizontalAlignment="Right" Width="75"/>
+                <Button Command="{Binding RemoveButtonCommand}" Grid.Column="2" Content="Remove" Margin="10,10,10,0" HorizontalAlignment="Right" Width="75"/>
             </Grid>
-            
-            
-            <Label Content="Edit:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
-            <Label Content="Remove:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
         </StackPanel>
 
         <!--Column 2-->

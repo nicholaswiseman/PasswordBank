@@ -67,6 +67,25 @@ namespace PasswordBank.Model
 
         }
 
+        public void RemoveFromXml(string service, string password)
+        {
+            try
+            {
+                foreach (var element in XmlDatabase.Element("logins").Descendants("login"))
+                {
+
+                    if(element.Element("service").Value == service)
+                    {
+                        element.Remove();
+                        XmlDatabase.Save(XmlPath);
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
         public ObservableCollection<Login> GetPasswordList()
         {
             ObservableCollection<Login> res = new ObservableCollection<Login>();
