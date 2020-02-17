@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordBank"
         mc:Ignorable="d"
-        Icon="lock.ico"
+        Icon="Content/lock.ico"
         Title="Password Bank" Height="450" Width="500">
     <Grid Background="#E00F0F0F">
         <Grid.ColumnDefinitions>
