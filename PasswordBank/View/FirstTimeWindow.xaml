@@ -6,8 +6,15 @@
         xmlns:local="clr-namespace:PasswordBank.View"
         Icon="Content/lock.ico"
         mc:Ignorable="d"
-        Title="Password Bank Setup" Height="200" Width="400">
+        Title="Password Bank Setup" Height="225" Width="425">
     <Grid Background="#E00F0F0F">
-
+        <StackPanel>
+            <Label Content="First time user please create a master password for Password Bank." FontSize="12" HorizontalAlignment="Center" FontFamily="Comic Sans MS"  Foreground="White"></Label>
+            <Label Content="Password:" FontSize="12" HorizontalAlignment="Center" FontFamily="Comic Sans MS"  Foreground="White"/>
+            <TextBox Margin="10,0,10,15" Text="Example" Width="100"/>
+            <Label Content="Confirm Password:" FontSize="12" HorizontalAlignment="Center" FontFamily="Comic Sans MS"  Foreground="White"/>
+            <TextBox Margin="10,0,10,15" Text="Example" Width="100"/>
+            <Button Content="Confirm" Width="75"/>
+        </StackPanel>
     </Grid>
 </Window>
