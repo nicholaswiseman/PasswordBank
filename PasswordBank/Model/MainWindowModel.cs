@@ -1,4 +1,5 @@
-﻿using PasswordBank.ViewModel;
+﻿using PasswordBank.View;
+using PasswordBank.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,6 +41,12 @@ namespace PasswordBank.Model
             this.ViewModel = vm;
 
             InitXmlDatabase();
+
+            if (this.XmlDatabase.Element("MasterPassword") == null)
+            {
+                var firstTimeWin = new FirstTimeWindow();
+                firstTimeWin.ShowDialog();
+            }
         }
 
         public void InitXmlDatabase()
