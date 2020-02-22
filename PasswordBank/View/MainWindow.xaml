@@ -50,7 +50,7 @@
         <!--Column 1-->
         <StackPanel Grid.Column="1">
             <Label Content="Search:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
-            <ListView Margin="10" ItemsSource="{Binding PasswordList}">
+            <ListView Margin="10" ItemsSource="{Binding PasswordList}" Height="350" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Service" DisplayMemberBinding="{Binding Service}" Width="100"/>
