@@ -91,7 +91,7 @@ namespace PasswordBank.Model
             UpdatePasswordList();
         }
 
-        public void RemoveFromXml(string service, string password)
+        public void RemoveFromXml(string service)
         {
             try
             {
@@ -110,6 +110,12 @@ namespace PasswordBank.Model
             {
 
             }
+        }
+
+        public void EditXml(string service, string password)
+        {
+            RemoveFromXml(service);
+            AddToXml(service, password);
         }
 
         public void UpdatePasswordList()

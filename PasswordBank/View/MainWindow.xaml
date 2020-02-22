@@ -41,7 +41,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button Command="{Binding AddButtonCommand}" Grid.Column="0" Content="Add" Margin="10,10,10,0" HorizontalAlignment="Right" Width="75"/>
-                <Button Grid.Column="1" Content="Edit" Margin="10,10,10,0" HorizontalAlignment="Right" Width="75"/>
+                <Button Command="{Binding EditButtonCommand}" Grid.Column="1" Content="Edit" Margin="10,10,10,0" HorizontalAlignment="Right" Width="75"/>
                 <Button Command="{Binding RemoveButtonCommand}" Grid.Column="2" Content="Remove" Margin="10,10,10,0" HorizontalAlignment="Right" Width="75"/>
             </Grid>
         </StackPanel>

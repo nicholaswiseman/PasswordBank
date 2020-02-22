@@ -46,6 +46,7 @@ namespace PasswordBank.ViewModel
         }
         public ICommand AddButtonCommand { get; set; }
         public ICommand RemoveButtonCommand { get; set; }
+        public ICommand EditButtonCommand { get; set; }
         public ICommand AppLoginCommand { get; set; }
 
         private MainWindowModel _model;
@@ -65,6 +66,7 @@ namespace PasswordBank.ViewModel
             this._model = new MainWindowModel(this);
             this.AddButtonCommand = new RelayCommand(AddButton);
             this.RemoveButtonCommand = new RelayCommand(RemoveButton);
+            this.EditButtonCommand = new RelayCommand(EditButton);
             this.AppLoginCommand = new RelayCommand(AppLogin);
             this.PasswordTextBox = "";
             this.ServiceTextBox = "";
@@ -77,9 +79,13 @@ namespace PasswordBank.ViewModel
 
         public void RemoveButton()
         {
-            this._model.RemoveFromXml(ServiceTextBox, PasswordTextBox);
+            this._model.RemoveFromXml(ServiceTextBox);
         }
 
+        public void EditButton()
+        {
+            this._model.EditXml(ServiceTextBox, PasswordTextBox);
+        }
         public void AppLogin()
         {
             this._model.AppLogin(this.AppLoginTextbox);
