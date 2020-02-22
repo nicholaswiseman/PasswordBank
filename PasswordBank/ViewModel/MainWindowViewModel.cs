@@ -3,6 +3,7 @@ using PasswordBank.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,21 @@ using System.Xml.Linq;
 
 namespace PasswordBank.ViewModel
 {
-    class MainWindowViewModel
+    class MainWindowViewModel : INotifyPropertyChanged
     {
 
-        public ObservableCollection<Login> PasswordList { get; set; }
+        public ObservableCollection<Login> PasswordList
+        {
+            get
+            {
+                return _passwordList;
+            }
+            set
+            {
+                _passwordList = value;
+                OnPropertyChanged("PasswordList");
+            }
+        }
         public string PasswordTextBox { get; set; }
         public string ServiceTextBox { get; set; }
 
@@ -25,6 +37,10 @@ namespace PasswordBank.ViewModel
         public ICommand RemoveButtonCommand { get; set; }
 
         private MainWindowModel _model;
+
+        private ObservableCollection<Login> _passwordList;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// constructor
@@ -62,6 +78,13 @@ namespace PasswordBank.ViewModel
             PasswordList.Remove(loginToRemove);
 
             this._model.RemoveFromXml(ServiceTextBox, PasswordTextBox);
+        }
+
+        // Create the OnPropertyChanged method to raise the event
+        // The calling member's name will be used as the parameter.
+        protected void OnPropertyChanged(string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
     }
