@@ -32,9 +32,12 @@ namespace PasswordBank.ViewModel
         public string PasswordTextBox { get; set; }
         public string ServiceTextBox { get; set; }
 
+        public string AppLoginTextbox { get; set; }
         public ICommand AddButtonCommand { get; set; }
 
         public ICommand RemoveButtonCommand { get; set; }
+
+        public ICommand AppLoginCommand { get; set; }
 
         private MainWindowModel _model;
 
@@ -51,33 +54,24 @@ namespace PasswordBank.ViewModel
             this._model = new MainWindowModel(this);
             this.AddButtonCommand = new RelayCommand(AddButton);
             this.RemoveButtonCommand = new RelayCommand(RemoveButton);
+            this.AppLoginCommand = new RelayCommand(AppLogin);
             this.PasswordTextBox = "";
             this.ServiceTextBox = "";
         }
 
         public void AddButton()
         {
-            this.PasswordList.Add(new Login(ServiceTextBox, PasswordTextBox));
             this._model.AddToXml(ServiceTextBox, PasswordTextBox);
         }
 
         public void RemoveButton()
         {
-            Login loginToRemove = new Login(ServiceTextBox, PasswordTextBox);
-
-            foreach (Login login in PasswordList)
-            {
-                if (login.Service == ServiceTextBox)
-                {
-                    loginToRemove = login;
-                    break;
-                    //PasswordList.Remove(login);
-                }
-            }
-
-            PasswordList.Remove(loginToRemove);
-
             this._model.RemoveFromXml(ServiceTextBox, PasswordTextBox);
+        }
+
+        public void AppLogin()
+        {
+            this._model.AppLogin(this.AppLoginTextbox);
         }
 
         // Create the OnPropertyChanged method to raise the event

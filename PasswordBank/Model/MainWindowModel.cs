@@ -3,6 +3,7 @@ using PasswordBank.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace PasswordBank.Model
             set
             {
                 _xmlDatabase = value;
-                this.ViewModel.PasswordList = this.GetPasswordList();
+                UpdatePasswordList();
             }
         }
 
@@ -31,7 +32,10 @@ namespace PasswordBank.Model
 
         public MainWindowViewModel ViewModel { get; set; }
 
+        public bool _loggedIn;
+
         private XDocument _xmlDatabase;
+
 
         /// <summary>
         /// constructor
@@ -39,7 +43,7 @@ namespace PasswordBank.Model
         public MainWindowModel(MainWindowViewModel vm)
         {
             this.ViewModel = vm;
-
+            this._loggedIn = false;
             InitXmlDatabase();
 
             if (this.XmlDatabase.Element("logins").Element("MasterPassword") == null)
@@ -70,8 +74,7 @@ namespace PasswordBank.Model
                 new XElement("service", service),
                 new XElement("pw", password)));
             XmlDatabase.Save(XmlPath);
-            //XmlDatabase = XDocument.Load(XmlPath);
-
+            UpdatePasswordList();
         }
 
         public void RemoveFromXml(string service, string password)
@@ -81,10 +84,11 @@ namespace PasswordBank.Model
                 foreach (var element in XmlDatabase.Element("logins").Descendants("login"))
                 {
 
-                    if(element.Element("service").Value == service)
+                    if (element.Element("service").Value == service)
                     {
                         element.Remove();
                         XmlDatabase.Save(XmlPath);
+                        UpdatePasswordList();
                     }
                 }
             }
@@ -93,25 +97,33 @@ namespace PasswordBank.Model
 
             }
         }
+
+        public void UpdatePasswordList()
+        {
+            this.ViewModel.PasswordList = this.GetPasswordList();
+        }
+
         public ObservableCollection<Login> GetPasswordList()
         {
             ObservableCollection<Login> res = new ObservableCollection<Login>();
-            try
+            if (_loggedIn)
             {
-                foreach (var element in XmlDatabase.Element("logins").Descendants("login"))
+                try
                 {
+                    foreach (var element in XmlDatabase.Element("logins").Descendants("login"))
+                    {
 
-                    string service = element.Element("service").Value;
-                    string pw = element.Element("pw").Value;
-                    res.Add(new Login(service, pw));
+                        string service = element.Element("service").Value;
+                        string pw = element.Element("pw").Value;
+                        res.Add(new Login(service, pw));
+
+                    }
+                }
+                catch
+                {
 
                 }
             }
-            catch
-            {
-
-            }
-
             return res;
         }
 
@@ -121,6 +133,19 @@ namespace PasswordBank.Model
             XmlDatabase.Add(new XElement("logins"));
             XmlDatabase.Save(XmlPath);
         }
+
+        public void AppLogin(string pw)
+        {
+
+            var masterPw = this.XmlDatabase.Element("logins").Element("MasterPassword").Value;
+            if(pw == masterPw)
+            {
+                _loggedIn = true;
+                this.ViewModel.PasswordList = this.GetPasswordList();
+            }
+        }
+
+
     }
 
     public class Login
