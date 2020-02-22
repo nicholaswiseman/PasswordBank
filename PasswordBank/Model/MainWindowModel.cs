@@ -42,9 +42,9 @@ namespace PasswordBank.Model
 
             InitXmlDatabase();
 
-            if (this.XmlDatabase.Element("MasterPassword") == null)
+            if (this.XmlDatabase.Element("logins").Element("MasterPassword") == null)
             {
-                var firstTimeWin = new FirstTimeWindow();
+                var firstTimeWin = new FirstTimeWindow(this.XmlDatabase, this.XmlPath);
                 firstTimeWin.ShowDialog();
             }
         }
