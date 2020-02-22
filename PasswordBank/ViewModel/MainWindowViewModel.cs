@@ -31,17 +31,28 @@ namespace PasswordBank.ViewModel
         }
         public string PasswordTextBox { get; set; }
         public string ServiceTextBox { get; set; }
-
         public string AppLoginTextbox { get; set; }
+        public bool LoggedIn
+        {
+            get
+            {
+                return _loggedIn;
+            }
+            set
+            {
+                _loggedIn = value;
+                OnPropertyChanged("LoggedIn");
+            }
+        }
         public ICommand AddButtonCommand { get; set; }
-
         public ICommand RemoveButtonCommand { get; set; }
-
         public ICommand AppLoginCommand { get; set; }
 
         private MainWindowModel _model;
 
         private ObservableCollection<Login> _passwordList;
+
+        private bool _loggedIn;
 
         public event PropertyChangedEventHandler PropertyChanged;
 

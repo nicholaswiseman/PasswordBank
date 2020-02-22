@@ -32,7 +32,21 @@ namespace PasswordBank.Model
 
         public MainWindowViewModel ViewModel { get; set; }
 
-        public bool _loggedIn;
+        public bool LoggedIn
+        {
+            get
+            {
+                return _loggedIn;
+            }
+
+            set
+            {
+                this.ViewModel.LoggedIn = value;
+                _loggedIn = value;
+            }
+        }
+
+        private bool _loggedIn;
 
         private XDocument _xmlDatabase;
 
@@ -140,7 +154,7 @@ namespace PasswordBank.Model
             var masterPw = this.XmlDatabase.Element("logins").Element("MasterPassword").Value;
             if(pw == masterPw)
             {
-                _loggedIn = true;
+                LoggedIn = true;
                 this.ViewModel.PasswordList = this.GetPasswordList();
             }
         }

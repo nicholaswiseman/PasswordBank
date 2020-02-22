@@ -19,7 +19,7 @@
             <TextBox Margin="10,0,10,0" Text="{Binding AppLoginTextbox}"/>
             <Button  Command="{Binding AppLoginCommand}" Grid.Column="1" Content="Login" Margin="10,10,10,0" HorizontalAlignment="Right" Width="75"/>
 
-            <Grid Margin="0,20,0,0">
+            <Grid Margin="0,20,0,0" IsEnabled="{Binding LoggedIn}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -34,7 +34,7 @@
                 </StackPanel>
 
             </Grid>
-            <Grid>
+            <Grid IsEnabled="{Binding LoggedIn}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -50,7 +50,7 @@
         <!--Column 1-->
         <StackPanel Grid.Column="1">
             <Label Content="Search:" FontSize="15" HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Foreground="White"/>
-            <ListView Margin="10" ItemsSource="{Binding PasswordList}" Height="350" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+            <ListView IsEnabled="{Binding LoggedIn}" Margin="10" ItemsSource="{Binding PasswordList}" Height="350" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Service" DisplayMemberBinding="{Binding Service}" Width="100"/>
